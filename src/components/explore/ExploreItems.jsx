@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
 
 const ExploreItems = () => {
+
+  const [hotCollections, setHotCollections] = useState(true)
+
+  async function fetchHotColections() {
+    const hotCollections = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+    )
+    console.log(hotCollections);
+  }
+
   return (
     <>
       <div>
@@ -27,7 +38,7 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={hotCollections.authorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
@@ -52,12 +63,12 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img src={hotCollections.nftImage} className="lazy nft__item_preview" alt="" />
               </Link>
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{hotCollections.title}</h4>
               </Link>
               <div className="nft__item_price">1.74 ETH</div>
               <div className="nft__item_like">
