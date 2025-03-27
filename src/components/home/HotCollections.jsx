@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
-// import OwlCarousel from 'react-owl-carousel';
-// import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel/dist/assets/owl.theme.default.css';
+import SimpleSlider from "../../pages/Slider";
+
+
+
+
 
 
 const HotCollections = () => {
@@ -33,8 +35,9 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <SimpleSlider>
           {hotCollections.map((hotCollection, index) => (
-            // <OwlCarousel>
+            
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
@@ -56,8 +59,9 @@ const HotCollections = () => {
                   </div>
                 </div>
               </div>
-            //</OwlCarousel>
+            
           ))}
+          </SimpleSlider>
         </div>
       </div>
     </section>
