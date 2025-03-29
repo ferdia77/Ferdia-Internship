@@ -4,10 +4,11 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import SimpleSlider from "../../pages/Slider";
+import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function fetchHotCollections() {
     const response = await axios.get(
@@ -31,15 +32,11 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <SimpleSlider>
-            {loading ? (
-              <div className="skeleton">
-                <div className="skeleton__loading">
-                  <div className="skeleton__loading--state">Loading</div>
-                </div>
-              </div>
+          
+          {loading ? (
+            <Skeleton />
             ) : (
-              <>
+              <SimpleSlider>
                 {hotCollections.map((hotCollection, index) => (
 
                   <div className="nft_coll" key={index}>
@@ -70,9 +67,8 @@ const HotCollections = () => {
                     </div>
                   </div>
                 ))}
-              </>
+              </SimpleSlider>
             )}
-          </SimpleSlider>
         </div>
       </div>
     </section>
