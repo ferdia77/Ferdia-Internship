@@ -34,7 +34,26 @@ const HotCollections = () => {
           </div>
           
           {loading ? (
-            <Skeleton />
+            <SimpleSlider>
+            {new Array(4).fill(0).map((_, index) => (
+
+              <div className="nft_coll" key={index}>
+                <div className="nft_wrap">
+                  <Skeleton width="100%" height="100%"/>
+                </div>
+                <div className="nft_coll_pp">
+                  <Skeleton width={60} height={60} borderRadius={100} />
+                  <i className="fa fa-check"></i>
+                </div>
+                <div className="nft_coll_info">
+                  <h4>
+                  <Skeleton height={20} width="40%"/>
+                  </h4>
+                  <span><Skeleton height={20} width="20%" /></span>
+                </div>
+              </div>
+            ))}
+          </SimpleSlider>
             ) : (
               <SimpleSlider>
                 {hotCollections.map((hotCollection, index) => (
