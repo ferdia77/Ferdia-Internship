@@ -2,7 +2,7 @@
 @import "./css/styles/bootstrap-grid.min.css";
 @import "./css/styles/bootstrap-reboot.min.css";
 @import "./css/styles/animate.css";
-@import "./css/styles/owl.carousel.css";
+
 @import "./css/styles/owl.theme.css";
 @import "./css/styles/owl.transitions.css";
 @import "./css/styles/magnific-popup.css";
@@ -10,3 +10,27 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.slick-prev:before, .slick-next:before {
+    background-color: black;
+    border-radius: 50px;
+}
+
+.skeleton {
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+    margin: 0 16px;
+   
+}
+
+.skeleton__loading {
+    background-color: lightgray;
+    width: 200px;
+    height: 100px;
+}
+
+.skeleton__loading--state {
+    background-color: lightgray;
+}
