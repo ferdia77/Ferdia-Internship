@@ -34,6 +34,7 @@ const HotCollections = () => {
 
           {loading ? (
             <SimpleSlider>
+              {/* mapping */}
               {new Array(4).fill(0).map((_, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
