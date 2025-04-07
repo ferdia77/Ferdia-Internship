@@ -17,20 +17,4 @@
     border-radius: 50px;
 }
 
-.skeleton {
-    display: flex;
-    justify-content: center;
-    background-color: lightgray;
-    margin: 0 16px;
-   
-}
 
-.skeleton__loading {
-    background-color: lightgray;
-    width: 200px;
-    height: 100px;
-}
-
-.skeleton__loading--state {
-    background-color: lightgray;
-}

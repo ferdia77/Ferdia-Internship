@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import SimpleSlider from "../../pages/Slider";
 import Skeleton from "../UI/Skeleton";
+import CountDown from "../UI/CountDown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -93,7 +94,7 @@ const NewItems = () => {
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
-                  <div className="de_countdown">{newItem.expiryDate} </div>
+                  <CountDown expiryDate = {newItem.expiryDate}/>
 
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
@@ -114,7 +115,7 @@ const NewItems = () => {
                       </div>
                     </div>
 
-                    <Link to="/item-details">
+                    <Link to="/item-details/:nftId">
                       <img
                         src={newItem.nftImage}
                         className="lazy nft__item_preview"

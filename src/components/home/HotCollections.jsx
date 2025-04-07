@@ -13,7 +13,7 @@ const HotCollections = () => {
     const response = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
-    //setLoading(false);
+    setLoading(false);
     setHotCollections(response.data);
   }
 
@@ -60,7 +60,7 @@ const HotCollections = () => {
               {hotCollections.map((hotCollection, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to="/item-details/:nftId">
                       <img
                         src={hotCollection.nftImage}
                         className="lazy img-fluid"
