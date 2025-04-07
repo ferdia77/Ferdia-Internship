@@ -27,7 +27,7 @@ const CountDown = ({ expiryDate }) => {
   }, []);
 
   return (
-    <div className="countdown-timer">
+    <div className="de_countdown">
       {expiryDate
         ? `${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`
         : "Expired"}
