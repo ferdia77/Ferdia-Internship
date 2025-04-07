@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
@@ -10,13 +10,14 @@ import Skeleton from "../UI/Skeleton";
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  let navigate = useNavigate()
 
   async function fetchNewItems() {
     const response = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
     //console.log(response)
-    // setLoading(false);
+    setLoading(false);
     setNewItems(response.data);
   }
 
@@ -36,20 +37,12 @@ const NewItems = () => {
           </div>
           {loading ? (
             <SimpleSlider>
-              {new Array(4).map((_, index) => (
+              {new Array(4).fill(0).map((_, index) => (
                 <div className="nft__item" key={index}>
                   <div className="author_list_pp">
-                    <Link
-                      to="/author"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Creator: Monica Lucas"
-                    >
-                      <Skeleton width="100%" height="100%" />
-                      <i className="fa fa-check"></i>
-                    </Link>
+                    <Skeleton width={50} height={50}borderRadius={50} />
                   </div>
-                  <Skeleton width="100%" height="100%" />
+                  <Skeleton width={50} height={50} />
 
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
@@ -70,9 +63,7 @@ const NewItems = () => {
                       </div>
                     </div>
 
-                    <Link to="/item-details">
-                      <Skeleton/>
-                    </Link>
+                    <Skeleton width="100%" height="100%" />
                   </div>
                   <div className="nft__item_info">
                     <Link to="/item-details">

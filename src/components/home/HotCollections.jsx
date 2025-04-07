@@ -13,7 +13,7 @@ const HotCollections = () => {
     const response = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
-    setLoading(false);
+    //setLoading(false);
     setHotCollections(response.data);
   }
 
