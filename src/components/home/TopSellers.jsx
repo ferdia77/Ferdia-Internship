@@ -15,8 +15,7 @@ async function fetchTopSellers() {
   const response = await axios.get(
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
   );
-  //setLoading(false)
-  console.log(response)
+  setLoading(false)
   setTopSellers(response.data);
 }
 
