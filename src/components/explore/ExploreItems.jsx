@@ -14,11 +14,12 @@ const ExploreItems = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
     );
     setLoading(false);
+    console.log(response)
     setExploreItems(response.data);
   }
 
   useEffect(() => {
-    fetchExploreItems
+    fetchExploreItems()
   }, [fetchExploreItems]);
   
   return (
