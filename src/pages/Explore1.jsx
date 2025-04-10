@@ -5,7 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import CountDown from "../UI/CountDown";
 
-const ExploreItems = () => {
+const Explore1 = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const[loading, setLoading] = useState(true);
 
@@ -91,7 +91,7 @@ const ExploreItems = () => {
         </>
       ) : (
         <>
-          {exploreItems.slice(0, 8).map((exploreItem, index) => (
+          {exploreItems.slice(0, 12).map((exploreItem, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -150,7 +150,7 @@ const ExploreItems = () => {
 
       }
       <div className="col-md-12 text-center">
-        <Link to="/explore/1" id="loadmore" className="btn-main lead">
+        <Link to="" id="loadmore" className="btn-main lead">
           Load more
         </Link>
       </div>
@@ -158,4 +158,4 @@ const ExploreItems = () => {
   );
 };
 
-export default ExploreItems;
+export default Explore1;
