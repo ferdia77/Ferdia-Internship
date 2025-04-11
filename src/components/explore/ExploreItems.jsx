@@ -123,7 +123,7 @@ const ExploreItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <CountDown>{exploreItem.expireDate}</CountDown>
+                <CountDown>{exploreItem.expiryDate}</CountDown>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
