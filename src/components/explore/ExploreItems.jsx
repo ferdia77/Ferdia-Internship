@@ -33,13 +33,13 @@ const ExploreItems = () => {
 
   function filterExploreItems(filter) {
     if (filter === "price_low_to_high") {
-      setExploreItems(ExploreItems.slice().sort((a, b) => a.price - b.price))
+      setExploreItems("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low")
     }
     if (filter === "price_high_to_low") {
-      setExploreItems(ExploreItems.slice().sort((b, a) => b.price - a.price))
+      setExploreItems(exploreItems.slice().sort((a, b) => b.price - a.price))
     }
     if (filter === "likes_high_to_low") {
-      setExploreItems(ExploreItems.slice().sort((a, b) => b.likes - a.likes))
+      setExploreItems(exploreItems.slice().sort((a, b) => b.likes - a.likes))
     }
 
   }
