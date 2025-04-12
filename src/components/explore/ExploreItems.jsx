@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import CountDown from "../UI/CountDown";
 import Skeleton from "../UI/Skeleton";
@@ -31,23 +29,23 @@ const ExploreItems = () => {
     setNFTPerPage((prev) => prev + 4);
   }
 
-  function filterExploreItems(filter) {
-    if (filter === "price_low_to_high") {
-      setExploreItems("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low")
-    }
-    if (filter === "price_high_to_low") {
-      setExploreItems(exploreItems.slice().sort((a, b) => b.price - a.price))
-    }
-    if (filter === "likes_high_to_low") {
-      setExploreItems(exploreItems.slice().sort((a, b) => b.likes - a.likes))
-    }
-
+  async function sortedCards(value) {
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`
+    );
+    setLoading(true)
+    setTimeout(() => {
+      setExploreItems(data);
+      setLoading(false);
+    }, 1500)
   }
+
+ 
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="" onChange={(event) => filterExploreItems(event.target.value)}>
+        <select id="filter-items" defaultValue="" onChange={(event) => sortedCards(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -123,7 +121,7 @@ const ExploreItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <CountDown>{exploreItem.expiryDate}</CountDown>
+                <CountDown expiryDate={exploreItem.expiryDate}/>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
