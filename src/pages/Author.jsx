@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import Skeleton from "../components/UI/Skeleton";
-import AuthorItemsSkeleton from "../components/author/AuthorItemsSkeleton";
+
 
 const Author = () => {
   const [loading, setLoading] = useState(true);
