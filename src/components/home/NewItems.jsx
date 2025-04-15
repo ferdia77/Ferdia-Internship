@@ -24,7 +24,7 @@ const NewItems = () => {
 
   useEffect(() => {
     fetchNewItems();
-  }, [fetchNewItems]);
+  }, []);
 
   return (
     <section id="section-items" className="no-bottom">
@@ -85,7 +85,7 @@ const NewItems = () => {
                 <div className="nft__item" key={index}>
                   <div className="author_list_pp">
                     <Link
-                      to="/author"
+                      to={`/author/${newItem.authorId}`}
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Creator: Monica Lucas"

@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import { useEffect } from "react";
 import axios from "axios";
+import { useState } from "react";
+import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
   const [loading, setLoading] = useState(true);
-  const [authors, setAuthor] = useState([]);
+  const [author, setAuthor] = useState({});
+  const [collection, setCollection] = useState([]);
+  const { authorId } = useParams()
+  const [isFollowing, setIsFollowing] = useState(false)
 
   async function fetchAuthors() {
-    const response = axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012"
+    const response = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
     );
+    console.log(response.data);
     setLoading(false);
+    setCollection(response.data.nftCollection);
     setAuthor(response.data);
   }
 
   useEffect(() => {
     fetchAuthors();
-  }, [fetchAuthors]);
+    console.log(authorId)
+  }, []);
+
+   function followBtn() {
+    setIsFollowing((prev) => !prev)
+   }
 
   return (
     <div id="wrapper">
@@ -37,11 +50,31 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  {authors.map((author, index) => (
-                    <>
-                      <div className="de-flex-col" key={index}>
+              {loading ? (
+                <>
+                  <div className="col-md-12">
+                    <div className="d_profile de-flex">
+                      <Skeleton  width={70} height={70} borderRadius={50} />
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <Skeleton width={160} height={44} borderRadius={12}/>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-md-12">
+                    <div className="de_tab tab_simple">
+                      <AuthorItems author={author} collection={collection} />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="col-md-12">
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
                         <div className="profile_avatar">
                           <img src={author.authorImage} alt="" />
 
@@ -53,7 +86,7 @@ const Author = () => {
                                 {author.tag}
                               </span>
                               <span id="wallet" className="profile_wallet">
-                               {author.address}
+                                {author.address}
                               </span>
                               <button id="btn_copy" title="Copy Text">
                                 Copy
@@ -64,22 +97,27 @@ const Author = () => {
                       </div>
                       <div className="profile_follow de-flex">
                         <div className="de-flex-col">
-                          <div className="profile_follower">{author.followers} followers</div>
-                          <Link to="#" className="btn-main">
-                            Follow
-                          </Link>
+                          <div className="profile_follower">
+                             {isFollowing ? author.followers + 1 : author.followers} followers
+                          </div>
+                          <button
+                            onClick={followBtn}
+                            to="#"
+                            className="btn-main"
+                          >
+                            {isFollowing ? "Unfollow" : "Follow"}
+                          </button>
                         </div>
                       </div>
-                    </>
-                  ))}
-                </div>
-              </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
-                </div>
-              </div>
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <div className="de_tab tab_simple">
+                      <AuthorItems author={author} collection={collection} />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>

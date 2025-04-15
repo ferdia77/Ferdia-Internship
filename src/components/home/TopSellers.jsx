@@ -21,7 +21,7 @@ async function fetchTopSellers() {
 
 useEffect(() => {
   fetchTopSellers();
-}, [fetchTopSellers])
+}, [])
 
   return (
     <section id="section-popular" className="pb-5">
@@ -57,7 +57,7 @@ useEffect(() => {
               {topSellers.map((topSeller, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${topSeller.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={topSeller.authorImage}
