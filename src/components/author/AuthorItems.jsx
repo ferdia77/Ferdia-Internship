@@ -12,7 +12,7 @@ const AuthorItems = ({ author, collection }) => {
         <div className="row">
           {loading ? (
             <>
-              {collection.map((authorNFT, index) => (
+              {new Array(8).fill(0).map((_, index) => (
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={index}
