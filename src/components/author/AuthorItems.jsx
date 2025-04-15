@@ -5,7 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import Skeleton from "../UI/Skeleton";
 
 const AuthorItems = ({ author, collection }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   return (
     <div className="de_tab_content">
       <div className="tab-1">
