@@ -25,6 +25,7 @@ const ExploreItems = () => {
   function handleLoadMoreButton() {
     if (exploreItems.length === NFTPerPage) {
       setLoadMoreButton(false);
+      
     }
     setNFTPerPage((prev) => prev + 4);
   }
@@ -40,7 +41,7 @@ const ExploreItems = () => {
     }, 1500)
   }
 
- 
+  console.log(exploreItems)
 
   return (
     <>
@@ -109,7 +110,7 @@ const ExploreItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${exploreItem.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                   >
