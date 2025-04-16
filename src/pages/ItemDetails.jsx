@@ -1,32 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
-import axios from "axios";
 
 const ItemDetails = () => {
   const params = useParams()
-  const [loading, setLoading] = useState(true);
-  const [itemDetails, setItemDetails] = useState([])
   console.log(params.nftId)  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  async function fetchItemDetails() {
-    const response = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=17914494"
-    );
-    console.log(response)
-    setLoading(false);
-    setItemDetails(response.data)
-  }
-
-  useEffect(() => {
-    fetchItemDetails()
-  }, [])
-  
 
   return (
     <div id="wrapper">
@@ -37,27 +20,29 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={itemDetails.nftImage}
+                  src={nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>{itemDetails.title}</h2>
+                  <h2>Rainbow Style #194</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      {itemDetails.views}
+                      100
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      {itemDetails.likes}
+                      74
                     </div>
                   </div>
                   <p>
-                    {itemDetails.description}
+                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                    illo inventore veritatis et quasi architecto beatae vitae
+                    dicta sunt explicabo.
                   </p>
                   <div className="d-flex flex-row">
                     <div className="mr40">
@@ -65,12 +50,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={itemDetails.ownerImage} alt="" />
+                            <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{itemDetails.ownerName}</Link>
+                          <Link to="/author">Monica Lucas</Link>
                         </div>
                       </div>
                     </div>
@@ -82,12 +67,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={itemDetails.ownerImage} alt="" />
+                            <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{itemDetails.ownerName}</Link>
+                          <Link to="/author">Monica Lucas</Link>
                         </div>
                       </div>
                     </div>
@@ -95,7 +80,7 @@ const ItemDetails = () => {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>{itemDetails.price}</span>
+                      <span>1.85</span>
                     </div>
                   </div>
                 </div>
