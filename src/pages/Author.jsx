@@ -20,7 +20,6 @@ const Author = () => {
     const response = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
     );
-    console.log(response.data);
     setLoading(false);
     setCollection(response.data.nftCollection);
     setAuthor(response.data);
@@ -28,7 +27,6 @@ const Author = () => {
 
   useEffect(() => {
     fetchAuthors();
-    console.log(authorId);
   }, []);
 
   function followBtn() {
